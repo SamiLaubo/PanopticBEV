@@ -307,7 +307,8 @@ def make_model(args, config, num_thing, num_stuff):
                                   classes["total"],
                                   out_size=out_shape,
                                   pooling_size=sem_config.getstruct("pooling_size"),
-                                  norm_act=norm_act_static)
+                                  norm_act=norm_act_static,
+                                  hidden_channels=sem_config.getstruct("sem_hidden_channels"))
 
     # Panoptic fusion algorithm
     po_loss = PanopticLoss(classes["stuff"])
