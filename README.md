@@ -4,6 +4,12 @@ This is the repository for group 33 in the course Deep Learning for Autonomous V
 
 The repository is forked and modified from https://github.com/robot-learning-freiburg/PanopticBEV.
 
+## Introduction
+
+## Contribution
+Our contribution on this model is focused on the 
+
+## Experiments
 
 ## Setup on SCITAS
 1. Connect to izar server
