@@ -634,16 +634,16 @@ def validate(model, dataloader, **varargs):
 def main(args):
     print('Training model!')
 
-    if not args.debug:
-        # Initialize multi-processing
-        distributed.init_process_group(backend='nccl', init_method='env://')
-        device_id, device = args.local_rank, torch.device(args.local_rank)
-        rank, world_size = distributed.get_rank(), distributed.get_world_size()
-        torch.cuda.set_device(device_id)
-    else:
-        rank = 0
-        world_size = 1
-        device_id, device = rank, torch.device(rank+3)
+    # if not args.debug:
+    #     # Initialize multi-processing
+    #     distributed.init_process_group(backend='nccl', init_method='env://')
+    #     device_id, device = args.local_rank, torch.device(args.local_rank)
+    #     rank, world_size = distributed.get_rank(), distributed.get_world_size()
+    #     torch.cuda.set_device(device_id)
+    # else:
+    rank = 0
+    world_size = 1
+    device_id, device = rank, torch.device(rank+3)
 
     # Create directories
     if not args.debug:
@@ -670,6 +670,10 @@ def main(args):
     print('Creating dataloaders')
     # Create dataloaders
     train_dataloader, val_dataloader = make_dataloader(args, config, rank, world_size)
+    print(f'Dataloaders --------------------------------------------------------')
+    print(train_dataloader.dataset.num_thing)
+    print(train_dataloader.dataset.num_stuff)
+    print(f'Dataloaders --------------------------------------------------------')
     print('Creating dataloaders - END')
 
     print('Creating model')
