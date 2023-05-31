@@ -532,6 +532,11 @@ def main(args):
     # Create dataloaders
     test_dataloader = make_dataloader(args, config, rank, world_size)
 
+    print(f'Dataloaders --------------------------------------------------------')
+    print(test_dataloader.dataset.num_thing)
+    print(test_dataloader.dataset.num_stuff)
+    print(f'Dataloaders --------------------------------------------------------')
+
     # Create model
     model = make_model(args, config, test_dataloader.dataset.num_thing, test_dataloader.dataset.num_stuff)
 
